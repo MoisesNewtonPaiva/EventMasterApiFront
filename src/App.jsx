@@ -28,7 +28,10 @@ function App() {
       <ul>
         {events.map((event) => (
           <li key={event.id}>
-            <strong>{event.name}</strong>
+            <strong>Name: </strong>{event.name} <br />
+            <strong>Date: </strong>{event.data} <br />
+            <strong>Price: </strong> {event.price} <br />
+            <strong>Description: </strong>{event.description} <br />
           </li>
         ))}
       </ul>
