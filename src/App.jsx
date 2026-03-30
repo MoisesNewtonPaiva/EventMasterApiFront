@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios'
+import PageEvents from './PageEvents';
+import PageInsert from './PageInsert' ;
+
 
 
 function App() {
