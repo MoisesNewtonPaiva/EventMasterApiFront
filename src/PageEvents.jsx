@@ -56,6 +56,9 @@ export default function PageEvents() {
                             <p>{event.description}</p>
                             <p className="price">Price: ${event.price}</p>
                             <p className="date">{new Date(event.data).toLocaleDateString()}</p>
+                            <button className="update-event-button" onClick={() => updateEvent(event.id)}>
+                                Update
+                            </button>
                             <button className="delete-event-button" onClick={() => deleteEvent(event.id)}>
                                 Delete
                             </button>

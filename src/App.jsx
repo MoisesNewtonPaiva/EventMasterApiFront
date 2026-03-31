@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios'
 import './App.css'
 import PageEvents from './PageEvents';
-import PageInsert from './PageInsert' ;
+import PageInsert from './PageInsert';
+import PageId from './PageId';
 
 
 
@@ -27,12 +28,14 @@ function App() {
   return (
     <BrowserRouter>
       <nav>
-        <Link to="/">Events</Link>
+        <Link to="/search">Search Id</Link>
         <Link to="/insert">Insert Event</Link>
+        <Link to="/">All Events</Link>
       </nav>
       <Routes>
         <Route path="/" element={<PageEvents events={events} />} />
         <Route path="/insert" element={<PageInsert />} />
+        <Route path="/search" element={<PageId />} />
       </Routes>
     </BrowserRouter>
   )
