@@ -31,6 +31,18 @@ export default function PageEvents() {
         }
     };
 
+    const updateEvent = async (eventId) => {
+        const newName = prompt('Enter new name for the event:');
+        if (!newName) return;
+        try {
+            await axios.put(`https://eventmasterapi-v3zw.onrender.com/api/events/update/${eventId}`, { name: newName });
+            await fetchEvents();
+        } catch (error) {
+            console.error('Error updating event:', error);
+            alert('Erro ao atualizar evento. Tente novamente.');
+        }
+    };
+
     if (loading) return <div className="loading">Loading...</div>;
 
     return (
@@ -50,7 +62,7 @@ export default function PageEvents() {
                         </div>
                     ))
                 ) : (
-                    <p>Nenhum evento encontrado.</p>
+                    <p>No events found.</p>
                 )}
             </div>
         </div>
