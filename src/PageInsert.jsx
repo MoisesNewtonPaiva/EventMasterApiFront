@@ -1,8 +1,11 @@
 
+import { useState } from 'react';
+import axios from 'axios';
+import './PageInsert.css';
 
 function PageInsert() {
 
-    const [name, setName] = useAState('');
+    const [name, setName] = useState('');
     const [data, setData] =useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
@@ -31,13 +34,15 @@ function PageInsert() {
         }
     };
     return (
-        <form onSumbmit={handleSubmit}>
-            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-            <input type="text" placeholder="Data" value={data} onChange={(e) => setData(e.target.value)} />
-            <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
-            <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-            <button type="submit">Insert Event</button>
-        </form>
+        <div className="page-insert">
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="date" placeholder="Data" value={data} onChange={(e) => setData(e.target.value)} />
+                <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
+                <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                <button type="submit">Insert Event</button>
+            </form>
+        </div>
     );
 }
 

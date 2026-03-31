@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './PageEvents.css';
 
 export default function PageEvents() {
@@ -11,10 +12,8 @@ export default function PageEvents() {
 
     const fetchEvents = async () => {
         try {
-            // Replace with your API endpoint
-            const response = await fetch('/api/events');
-            const data = await response.json();
-            setEvents(data);
+            const response = await axios.get('https://eventmasterapi-v3zw.onrender.com/api/events');
+            setEvents(response.data);
         } catch (error) {
             console.error('Error fetching events:', error);
         } finally {
@@ -22,7 +21,7 @@ export default function PageEvents() {
         }
     };
 
-    if (loading) return <div className="loading">Carregando...</div>;
+    if (loading) return <div className="loading">Loading...</div>;
 
     return (
         <div className="page-events">
@@ -33,12 +32,16 @@ export default function PageEvents() {
                         <div key={event.id} className="event-card">
                             <h2>{event.name}</h2>
                             <p>{event.description}</p>
+                            <p className="price">Price: ${event.price}</p>
                             <p className="date">{new Date(event.data).toLocaleDateString()}</p>
                         </div>
                     ))
                 ) : (
                     <p>Nenhum evento encontrado.</p>
                 )}
+            </div>
+            <div className = "delete-container">
+                <button onClick={fetchEvents} className="delete-button">x</button>
             </div>
         </div>
     );
