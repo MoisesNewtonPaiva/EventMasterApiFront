@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios'
+import './App.css'
 import PageEvents from './PageEvents';
 import PageInsert from './PageInsert' ;
 
@@ -24,23 +25,16 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Events</h1>
-      <button onClick={() => setEvents([])}>
-        Clear Events
-      </button>
-      <ul>
-        {events.map((event) => (
-          <li key={event.id}>
-            <strong>Name: </strong>{event.name} <br />
-            <strong>Date: </strong>{event.data} <br />
-            <strong>Price: </strong> {event.price} <br />
-            <strong>Description: </strong>{event.description} <br />
-          </li>
-        ))}
-      </ul>
-      {events.length === 0 && <p>Carregando ou nenhum evento encontrado...</p>}
-    </div>
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Events</Link>
+        <Link to="/insert">Insert Event</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<PageEvents events={events} />} />
+        <Route path="/insert" element={<PageInsert />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
