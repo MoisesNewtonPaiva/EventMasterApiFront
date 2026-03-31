@@ -21,6 +21,16 @@ export default function PageEvents() {
         }
     };
 
+    const deleteEvent = async (eventId) => {
+        try {
+            await axios.delete(`https://eventmasterapi-v3zw.onrender.com/api/events/delete/${eventId}`);
+            await fetchEvents();
+        } catch (error) {
+            console.error('Error deleting event:', error);
+            alert('Erro ao deletar evento. Tente novamente.');
+        }
+    };
+
     if (loading) return <div className="loading">Loading...</div>;
 
     return (
@@ -34,14 +44,14 @@ export default function PageEvents() {
                             <p>{event.description}</p>
                             <p className="price">Price: ${event.price}</p>
                             <p className="date">{new Date(event.data).toLocaleDateString()}</p>
+                            <button className="delete-event-button" onClick={() => deleteEvent(event.id)}>
+                                Delete
+                            </button>
                         </div>
                     ))
                 ) : (
                     <p>Nenhum evento encontrado.</p>
                 )}
-            </div>
-            <div className = "delete-container">
-                <button onClick={fetchEvents} className="delete-button">x</button>
             </div>
         </div>
     );

@@ -79,25 +79,23 @@
   grid-column: 1 / -1;
 }
 
-.delete-button {
-  position:fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: red;
-  color: white;
-  border-radius: 50%;
+.delete-event-button {
+  margin-top: 12px;
+  align-self: flex-end;
+  background: #ff4d4f;
+  color: #fff;
   border: none;
-  font-size: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  padding: 8px 14px;
   cursor: pointer;
-  z-index: 1000;
-  transition: background-color 0.3s;
+  font-weight: 700;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.delete-button:hover {
-  background-color: darkred;
+.delete-event-button:hover {
+  background: #d9363e;
+  transform: scale(1.035);
 }
-
 /* Responsivo */
 @media (max-width: 768px) {
   .page-events {
