@@ -4,7 +4,7 @@ import axios from 'axios'
 import './App.css'
 import PageEvents from './PageEvents';
 import PageInsert from './PageInsert';
-import PageId from './PageId';
+import PageSearchId from './PageSearchId';
 
 
 
@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PageEvents events={events} />} />
         <Route path="/insert" element={<PageInsert />} />
-        <Route path="/search" element={<PageId />} />
+        <Route path="/search" element={<PageSearchId />} />
       </Routes>
     </BrowserRouter>
   )

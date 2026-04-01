@@ -47,7 +47,7 @@ export default function PageEvents() {
 
     return (
         <div className="page-events">
-            <h1>Eventos</h1>
+            <h1>Events</h1>
             <div className="events-container">
                 {events.length > 0 ? (
                     events.map((event) => (
