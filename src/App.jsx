@@ -5,6 +5,7 @@ import './App.css'
 import PageEvents from './PageEvents';
 import PageInsert from './PageInsert';
 import PageSearchId from './PageSearchId';
+import PageId from './PageId';
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/" element={<PageEvents events={events} />} />
         <Route path="/insert" element={<PageInsert />} />
         <Route path="/search" element={<PageSearchId />} />
+        <Route path="/events/:id" element={<PageId />} />
       </Routes>
     </BrowserRouter>
   )

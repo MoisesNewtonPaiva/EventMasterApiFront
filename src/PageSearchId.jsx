@@ -1,53 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './PageSearchId.css';
 
 function PageSearchId() {
-    const {id} = useParams();
-    const [event, setEvent] = useState(null);
-    const [loading, setLoading] = useState(true);
+    // 1. Estado para o que o usuário digita no input
+    const [searchId, setSearchId] = useState('');
+    const navigate = useNavigate();
 
+    const fetchEventById = async (e) => {
+        if (e) e.preventDefault();
 
-    const fetchEventById = async () => {
+        // Verifica se o campo não está vazio
+        if (!searchId) return alert("Insert a valid ID.");
+        
         try {
-            useEffect (() => {
-                fetchEventById();
-            }, [id]);
-            const response = await axios.get(`https://eventmasterapi-v3zw.onrender.com/api/events/${id}`);
-            setEvent(response.data);
+            // 2. Busca na API usando o ID digitado (searchId)
+            const response = await axios.get(`https://eventmasterapi-v3zw.onrender.com/api/events/${searchId}`);
+
+            if (response.data) {
+                console.log("EEvent found! Navigating...");
+                // 3. Navega para a página de detalhes usando o ID digitado
+                navigate(`/events/${searchId}`);
+            }
         } catch (error) {
             console.error('Error fetching event by ID:', error);
-            alert('Erro ao buscar evento. Verifique o ID e tente novamente.');
-        } finally {
-            setLoading(false);
+            alert('ID not found in the database.');
         }   
     };
 
     return (
-
-        <><div className="search-id">
+        <div className="search-id">
             <h1>Search Event by ID</h1>
             <input
                 type="number"
                 placeholder="Enter Event ID"
-                value={id}
-                onChange={(e) => setId(e.target.value)} />
+                value={searchId} // Usa o estado correto
+                onChange={(e) => setSearchId(e.target.value)} 
+            />
             <button onClick={fetchEventById}>Search</button>
         </div>
-        {loading ? (
-            <div className="loading">Loading...</div>
-        ) : event ? (
-            <div className="event-details">
-                <h2>{event.name}</h2>
-                <p>{event.data ? new Date(event.data).toLocaleDateString() : 'N/A'}</p>
-                <p className="price">Price: ${event.price}</p>
-                <p>{event.description}</p>
-            </div>
-        ) : (
-            <p>Event not found.</p>
-        )}</>
-
     );
 }
 
