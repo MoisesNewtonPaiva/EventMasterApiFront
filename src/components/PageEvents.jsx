@@ -39,11 +39,11 @@ export default function PageEvents() {
             await fetchEvents();
         } catch (error) {
             console.error('Error updating event:', error);
-            alert('Erro ao atualizar evento. Tente novamente.');
+            alert('Error updating event. Try again.');
         }
     };
 
-    if (loading) return <div className="loading">Carregando eventos...</div>;
+    if (loading) return <div className="loading">Loading events...</div>;
 
     return (
         <div className="page-events-container">
