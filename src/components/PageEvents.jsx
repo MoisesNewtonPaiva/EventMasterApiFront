@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './PageEvents.css';
+import '../css/PageEvents.css';
 
 export default function PageEvents() {
     const [events, setEvents] = useState([]);
@@ -43,29 +43,35 @@ export default function PageEvents() {
         }
     };
 
-    if (loading) return <div className="loading">Loading...</div>;
+    if (loading) return <div className="loading">Carregando eventos...</div>;
 
     return (
-        <div className="page-events">
-            <h1>Events</h1>
-            <div className="events-container">
+        <div className="page-events-container">
+            <h1 className="page-events-title">All Events</h1>
+            <div className="events-grid">
                 {events.length > 0 ? (
                     events.map((event) => (
                         <div key={event.id} className="event-card">
-                            <h2>{event.name}</h2>
-                            <p>{event.description}</p>
-                            <p className="price">Price: ${event.price}</p>
-                            <p className="date">{new Date(event.data).toLocaleDateString()}</p>
-                            <button className="update-event-button" onClick={() => updateEvent(event.id)}>
-                                Update
-                            </button>
-                            <button className="delete-event-button" onClick={() => deleteEvent(event.id)}>
-                                Delete
-                            </button>
+                            <h2 className="event-name">{event.name}</h2>
+                            <p className="event-desc">{event.description}</p>
+                            <div className="event-meta">
+                                <span className="event-price">💰 R$ {event.price}</span>
+                                <span className="event-date">📅 {new Date(event.data).toLocaleDateString()}</span>
+                            </div>
+                            <div className="event-actions">
+                                <button className="update-btn" onClick={() => updateEvent(event.id)}>
+                                    ✏️ Edit
+                                </button>
+                                <button className="delete-btn" onClick={() => deleteEvent(event.id)}>
+                                    🗑️ Delete
+                                </button>
+                            </div>
                         </div>
                     ))
                 ) : (
-                    <p>No events found.</p>
+                    <div className="empty-state">
+                        <p>No events found.</p>
+                    </div>
                 )}
             </div>
         </div>

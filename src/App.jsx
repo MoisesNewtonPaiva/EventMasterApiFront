@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios'
 import './App.css'
-import PageEvents from './PageEvents';
-import PageInsert from './PageInsert';
-import PageSearchId from './PageSearchId';
-import PageId from './PageId';
+import PageEvents from './components/PageEvents';
+import PageInsert from './components/PageInsert';
+import PageSearchId from './components/PageSearchId';
+import PageId from './components/PageId';
 
 
 

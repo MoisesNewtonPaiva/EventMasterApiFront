@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './PageSearchId.css';
+import '../css/PageSearchId.css';
 
 function PageSearchId() {
     // 1. Estado para o que o usuário digita no input
@@ -30,15 +30,22 @@ function PageSearchId() {
     };
 
     return (
-        <div className="search-id">
-            <h1>Search Event by ID</h1>
-            <input
-                type="number"
-                placeholder="Enter Event ID"
-                value={searchId} // Usa o estado correto
-                onChange={(e) => setSearchId(e.target.value)} 
-            />
-            <button onClick={fetchEventById}>Search</button>
+        <div className="page-search-container">
+            <div className="search-card">
+                <div className="search-icon">🔍</div>
+                <h2 className="search-title">Search Event By ID</h2>
+                <p className="search-subtitle">Insert the ID of the event you want to search for.</p>
+                <form onSubmit={fetchEventById} className="search-form">
+                    <input
+                        type="number"
+                        placeholder="Ex: 123"
+                        value={searchId}
+                        onChange={(e) => setSearchId(e.target.value)} 
+                        className="search-input"
+                    />
+                    <button type="submit" className="search-button">Search</button>
+                </form>
+            </div>
         </div>
     );
 }

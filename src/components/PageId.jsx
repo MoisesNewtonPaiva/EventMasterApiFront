@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './PageId.css';
+import '../css/PageId.css';
 
 function PageId() {
     const { id } = useParams();
@@ -36,11 +36,16 @@ function PageId() {
             {loading && <p>Loading...</p>}
 
             {!loading && event && (
-                <div>
-                    <h2>{event.name}</h2>
-                    <p>{event.data ? new Date(event.data).toLocaleDateString() : 'N/A'}</p>
-                    <p className="price">Price: ${event.price}</p>
-                    <p>{event.description}</p>
+                <div className="event-card">
+                    <h2 className="event-title">{event.name}</h2>
+                    <div className="event-meta">
+                        <p className="event-date">📅 {event.data ? new Date(event.data).toLocaleDateString() : 'N/A'}</p>
+                        <p className="event-price">💰 R$ {event.price}</p>
+                    </div>
+                    <div className="event-description-container">
+                        <h3>Sobre o evento</h3>
+                        <p className="event-description">{event.description}</p>
+                    </div>
                 </div>
             )}
 
